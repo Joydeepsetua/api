@@ -32,17 +32,17 @@ let self = module.exports = {
             }
         })
     },
-    update: async function (name, contact, service_id, start_date, end_date, id) {
+    update: async function (name, username,password, id) {
         return new Promise(async (resolve, reject) => {
             try {
 
-                let query = `select service from ` + CONSTANTS.TABLES.LOGIN + ` where id='${id}'`;
+                let query = `select * from ` + CONSTANTS.TABLES.LOGIN + ` where id='${id}'`;
 
                 let is_exist = await Database.is_exist(query);
 
                 if (is_exist === 1) {
 
-                    let update = `update ` + CONSTANTS.TABLES.LOGIN + ` set name='${name}', contact='${contact}', start_date='${start_date}', end_date='${end_date}', service='${service_id}' where id='${id}'`;
+                    let update = `update ` + CONSTANTS.TABLES.LOGIN + ` set name='${name}', username='${username}', password='${password}' where id='${id}'`;
 
                     let response = await Database.update(update)
 
@@ -64,8 +64,7 @@ let self = module.exports = {
         return new Promise(async (resolve, reject) => {
             try {
 
-                let query = `select c.id, c.name, c.contact, s.service, c.start_date, c.end_date from ` + CONSTANTS.TABLES.LOGIN + ` c left join ` + CONSTANTS.TABLES.SERVICE + ` s on s.id = c.service order by c.id desc`;
-
+                let query = `select * from ` + CONSTANTS.TABLES.LOGIN ;
                 let response = await Database.fetch(query);
 
                 resolve({
@@ -83,14 +82,13 @@ let self = module.exports = {
         return new Promise(async (resolve, reject) => {
             try {
 
-                let query = `select contact from ` + CONSTANTS.TABLES.LOGIN + ` where id='` + id + `'`;
+                let query = `select * from ` + CONSTANTS.TABLES.LOGIN + ` where id='` + id + `'`;
 
                 let is_exist = await Database.is_exist(query);
 
                 if (is_exist === 1) {
 
-                    let query = `select c.id, c.name, c.contact, s.service, c.start_date, c.end_date, s.id service_id from ` + CONSTANTS.TABLES.LOGIN + ` c left join ` + CONSTANTS.TABLES.SERVICE + ` s on s.id = c.service where c.id='` + id + `'`;
-
+                    let query = `select * from ` + CONSTANTS.TABLES.LOGIN + ` where id='` + id + `'`;
                     let response = await Database.fetch(query);
 
                     resolve({

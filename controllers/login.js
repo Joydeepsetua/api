@@ -37,11 +37,11 @@ try {
     exports.update = async (req, res, next) => {
         try {
 
-            let { name, contact, service_id, start_date, end_date } = req.body;
+            let { name, username, password} = req.body;
 
             let { id } = req.params;
 
-            let response = await Operations.update(name, contact, service_id, start_date, end_date, id);
+            let response = await Operations.update(name, username, password, id);
 
             res.status(response.code).send(response);
 

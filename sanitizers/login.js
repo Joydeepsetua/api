@@ -22,13 +22,10 @@ module.exports = {
     sanitizeUpdate: [
         body('name').trim(),
         body('name').customSanitizer(value => { return value.replace(/'/g, "''") }),
-        body('contact').trim(),
-        body('contact').customSanitizer(value => { return value.replace(/'/g, "''") }),
-        body('service_id').trim().toInt(),
-        body('start_date').trim(),
-        body('start_date').customSanitizer(value => { return value.replace(/'/g, "''") }),
-        body('end_date').trim(),
-        body('end_date').customSanitizer(value => { return value.replace(/'/g, "''") }),
+        body('username').trim(),
+        body('username').customSanitizer(value => { return value.replace(/'/g, "''") }),
+        body('password').trim(),
+        body('password').customSanitizer(value => { return value.replace(/'/g, "''") }),
         param('id').trim().toInt()
     ],
     sanitizeDelete: [

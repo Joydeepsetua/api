@@ -68,47 +68,25 @@ module.exports = {
             }
             next()
         },
-        body('contact')
+        body('username')
             .exists({ checkFalsy: true, checkNull: true })
             .isLength({ min: 1, max: 5000 }).withMessage('Should not be empty')
             .trim(),
         function (req, res, next) {
             var errorValidation = validationResult(req);
             if (!errorValidation.isEmpty()) {
-                return res.status(Response.required('a').code).send(Response.required('contact'));
+                return res.status(Response.required('a').code).send(Response.required('username'));
             }
             next()
         },
-        body('service_id')
+        body('password')
             .exists({ checkFalsy: true, checkNull: true })
             .isLength({ min: 1, max: 5000 }).withMessage('Should not be empty')
             .trim(),
         function (req, res, next) {
             var errorValidation = validationResult(req);
             if (!errorValidation.isEmpty()) {
-                return res.status(Response.required('a').code).send(Response.required('service_id'));
-            }
-            next()
-        },
-        body('start_date')
-            .exists({ checkFalsy: true, checkNull: true })
-            .isLength({ min: 1, max: 5000 }).withMessage('Should not be empty')
-            .trim(),
-        function (req, res, next) {
-            var errorValidation = validationResult(req);
-            if (!errorValidation.isEmpty()) {
-                return res.status(Response.required('a').code).send(Response.required('start_date'));
-            }
-            next()
-        },
-        body('end_date')
-            .exists({ checkFalsy: true, checkNull: true })
-            .isLength({ min: 1, max: 5000 }).withMessage('Should not be empty')
-            .trim(),
-        function (req, res, next) {
-            var errorValidation = validationResult(req);
-            if (!errorValidation.isEmpty()) {
-                return res.status(Response.required('a').code).send(Response.required('end_date'));
+                return res.status(Response.required('a').code).send(Response.required('password'));
             }
             next()
         },
